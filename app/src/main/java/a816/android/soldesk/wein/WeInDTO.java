@@ -8,6 +8,11 @@ public class WeInDTO {
     private String url;
     private String wein_data;
 
+    public WeInDTO(String wein_data,String url){
+        this.wein_data = wein_data;
+        this.url = url;
+    }
+
     public String getUrl() {
         return url;
     }

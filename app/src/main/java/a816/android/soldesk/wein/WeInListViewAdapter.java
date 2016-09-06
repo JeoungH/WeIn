@@ -11,9 +11,9 @@ import android.widget.TextView;
  * Created by soldesk on 2016-09-05.
  */
 public class WeInListViewAdapter extends BaseAdapter{
-    private String[] data;
+    private WeInDTO[] data;
 
-    public WeInListViewAdapter(String[] data){
+    public WeInListViewAdapter(WeInDTO[] data){
         this.data = data;
     }
 
@@ -39,7 +39,12 @@ public class WeInListViewAdapter extends BaseAdapter{
                     .inflate(R.layout.litemlayout,null);
         }
         TextView tv_item = (TextView) view.findViewById(R.id.txtView01);
-        tv_item.setText(data[i]);
+        tv_item.setText(data[i].getWein_data());
         return view;
+    }
+
+    public WeInDTO getWein(int position){
+
+        return data[position];
     }
 }
