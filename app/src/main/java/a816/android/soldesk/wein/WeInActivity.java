@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class WeInActivity extends AppCompatActivity {
 
     ListView listView;
@@ -30,7 +33,7 @@ public class WeInActivity extends AppCompatActivity {
         };
         listView = (ListView) findViewById(R.id.listView);
 
-        final WeInListViewAdapter adapter = new WeInListViewAdapter(weInList);
+        final WeInListViewAdapter adapter = new WeInListViewAdapter(wein_data);
 
         listView.setAdapter(adapter);
 
@@ -44,7 +47,13 @@ public class WeInActivity extends AppCompatActivity {
 //                Intent intent = new Intent(WeInActivity.this,NextActivity.class);
 //                intent.putExtra("data",data[position]);
 //                intent.putExtra("position",position);
-                String url = adapter.getWein(position).getUrl();
+                String url = "";
+                try {
+                    url = "https://ko.wikipedia.org/wiki/"+ URLEncoder.encode(
+                            (wein_data[position].split(" "))[0],"UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
             }
